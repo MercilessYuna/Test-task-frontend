@@ -1,1 +1,46 @@
-<p>sorting-page works!</p>
+<div class="card-body">
+  <form (ngSubmit)="onSubmit()" #enterStrForm="ngForm">
+    <div class="form-group">
+      <label for="enterStr">Введите значения через запятую для нового массива, у которого будет id = {{maxArr + 1}} </label>
+      <input type="text" [(ngModel)]="enterStr"
+             class="form-control"
+             id="enterStr"
+             name="enterStr">
+    </div>
+    <button type="submit" class="btn btn-info">Запустить сортировку</button>
+    <br>
+    <br>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="isCreated">
+      Массив отсортирован!
+      <button type="button" class="close" data-dismiss="alert" aria-label="Закрыть">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+  </form>
+  <form (ngSubmit)="showSort(enterSearchId)" #enterStrForm="ngForm">
+    <div class="form-group">
+      <label for="enterSearchId">Введите id сортировки, которую хотите получить </label>
+      <input type="number" [(ngModel)]="enterSearchId"
+             class="form-control"
+             id="enterSearchId"
+             name="enterSearchId">
+    </div>
+    <button type="submit" class="btn btn-info">Вывести сортировку</button>
+  </form>
+  <br>
+  <table class="table table-bordered table-striped" *ngIf="showArray and arrayForShow.NotNull">
+    <thead>
+    <tr>
+      <th scope="col">Отсортированный массив под id = {{ enterSearchId }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let elem of arrayForShow">
+      <td>{{ elem.elem }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
